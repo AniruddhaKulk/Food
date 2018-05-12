@@ -53,7 +53,7 @@ public class SignIn extends AppCompatActivity {
                         progressDialog.dismiss();
                         if (dataSnapshot.child(edPhone.getText().toString()).exists()) {
                             User user = dataSnapshot.child(edPhone.getText().toString()).getValue(User.class);
-
+                            user.setPhone(edPhone.getText().toString());
                             if (user.getPassword().equals(edPassword.getText().toString())) {
                                 //Toast.makeText(SignIn.this, "Login successful", Toast.LENGTH_SHORT).show();
                                 Common.currentUser = user;

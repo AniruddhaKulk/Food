@@ -5,30 +5,40 @@ package com.aniruddhakulkarni.food.model;
  */
 
 public class User {
-    private String name;
-    private String password;
+    private String Name;
+    private String Password;
+    private String Phone;
 
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
 
     public User() {
     }
 
+    public User(String name, String password) {
+        Name = name;
+        Password = password;
+    }
+
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 }
