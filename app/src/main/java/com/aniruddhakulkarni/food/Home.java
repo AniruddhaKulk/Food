@@ -34,6 +34,7 @@ public class Home extends AppCompatActivity
     private FirebaseDatabase database;
     private DatabaseReference categoryTable;
     private RecyclerView rvCategory;
+    private FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class Home extends AppCompatActivity
     }
 
     private void loadCategories() {
-        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.row_category, CategoryViewHolder.class, categoryTable) {
+        adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.row_category, CategoryViewHolder.class, categoryTable) {
             @Override
             protected void populateViewHolder(CategoryViewHolder viewHolder, Category model, int position) {
                 viewHolder.tvCategoryName.setText(model.getName());
@@ -86,7 +87,10 @@ public class Home extends AppCompatActivity
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Home.this, FoodList.class);
+                        intent.putExtra("CategoryID", adapter.getRef(position).getKey());
+                        startActivity(intent);
                     }
                 });
             }
