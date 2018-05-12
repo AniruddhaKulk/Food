@@ -1,5 +1,6 @@
 package com.aniruddhakulkarni.food;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -59,7 +60,10 @@ public class FoodList extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(FoodList.this, foodModel.getName(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(FoodList.this, foodModel.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(FoodList.this, FoodDetails.class);
+                        intent.putExtra("FoodID", adapter.getRef(position).getKey());
+                        startActivity(intent);
                     }
                 });
             }
