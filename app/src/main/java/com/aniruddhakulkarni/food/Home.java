@@ -82,7 +82,6 @@ public class Home extends AppCompatActivity
             protected void populateViewHolder(CategoryViewHolder viewHolder, Category model, int position) {
                 viewHolder.tvCategoryName.setText(model.getName());
                 Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.ivCategory);
-                final Category clickItem = model;
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -129,13 +128,14 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_menu) {
             // Handle the camera action
         }else if (id == R.id.nav_cart) {
-            // Handle the camera action
+            startActivity(new Intent(Home.this, Cart.class));
         }else if (id == R.id.nav_order) {
-            // Handle the camera action
+            startActivity(new Intent(Home.this, OrderStatus.class));
         } else if (id == R.id.nav_logout) {
             // Handle the camera action
-            startActivity(new Intent(Home.this, SignIn.class));
-            finish();
+           Intent logout = new Intent(Home.this, SignIn.class);
+           logout.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           startActivity(logout);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
